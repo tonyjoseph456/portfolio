@@ -10,10 +10,8 @@
     header {background:#1a1a1a; color:#fff; text-align:center; padding:3rem 1rem;}
     header h1 {margin:0; font-family:'Press Start 2P', cursive; font-size:2.2rem; color:#ffcc00;}
     header p {margin-top:1rem; font-size:1.2rem; color:#aaa;}
-    
     section {padding:3rem 1rem; max-width:1200px; margin:auto;}
     h2 {text-align:center; font-family:'Press Start 2P', cursive; font-size:1.5rem; margin-bottom:2rem; color:#ffcc00;}
-    
     .projects {display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:2rem;}
     .card {background:#1f1f1f; border-radius:12px; overflow:hidden; box-shadow:0 6px 15px rgba(0,0,0,0.4); transition:transform 0.3s;}
     .card:hover {transform:translateY(-5px);}
@@ -27,7 +25,7 @@
     .appstore {background:#007aff; color:#fff;}
     .github {background:#333; color:#fff;}
     .links a:hover {opacity:0.8;}
-    
+    .card a.img-link {display:block;}
     footer {background:#111; color:#777; text-align:center; padding:1.5rem; margin-top:3rem;}
     footer a {color:#ffcc00; text-decoration:none;}
   </style>
@@ -41,9 +39,11 @@
   <section>
     <h2>🎮 My Games & Projects</h2>
     <div class="projects">
-      
+
       <div class="card">
-        <img src="images/SpinyNinjaIcon.png" alt="Spiny Ninja Screenshot">
+        <a href="spiny-ninja.html" class="img-link">
+          <img src="images/SpinyNinjaIcon.png" alt="Spiny Ninja Screenshot">
+        </a>
         <div class="card-content">
           <h3>Spiny Ninja</h3>
           <p>A fast-paced endless runner with stylized graphics and smooth controls.</p>
@@ -55,7 +55,9 @@
       </div>
 
       <div class="card">
-        <img src="images/PulimuruganArIcon.png" alt="Pulimurugan AR Screenshot">
+        <a href="pulimurugan-ar.html" class="img-link">
+          <img src="images/PulimuruganArIcon.png" alt="Pulimurugan AR Screenshot">
+        </a>
         <div class="card-content">
           <h3>Pulimurugan AR</h3>
           <p>Augmented Reality(AR) version of Pulimurugan Movie Official 3D Game.</p>
