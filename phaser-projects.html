@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Phaser Projects — Screenshots</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0e0e0e;--card:#1f1f1f;--accent:#ffcc00;--muted:#aaa}
+    html,body{height:100%;margin:0;font-family:Roboto,Segoe UI,Arial,sans-serif;background:var(--bg);color:#f4f4f4}
+    header{padding:2rem 1rem;text-align:center;background:#111}
+    header h1{margin:0;font-family:'Press Start 2P',cursive;font-size:1.6rem;color:var(--accent)}
+    main{max-width:1100px;margin:2rem auto;padding:1rem}
+    .viewer{background:var(--card);border-radius:12px;padding:1rem;box-shadow:0 8px 30px rgba(0,0,0,.6);display:flex;flex-direction:column;gap:.6rem;align-items:center}
+    .frame{width:100%;max-width:1000px;background:#000;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:220px}
+    .frame img{width:100%;height:auto;max-height:650px;object-fit:contain;display:block;background:#111}
+    .controls{display:flex;gap:.6rem;align-items:center}
+    button{background:var(--accent);border:0;padding:.6rem .9rem;border-radius:8px;color:#111;font-weight:700;cursor:pointer}
+    .info{color:var(--muted);font-size:.9rem;margin-top:.3rem}
+    .dots{display:flex;gap:.5rem;margin-top:.6rem}
+    .dot{width:10px;height:10px;border-radius:50%;background:#444;cursor:pointer;border:2px solid transparent}
+    .dot.active{background:var(--accent);border-color:#222}
+    .thumbs{display:flex;gap:.5rem;overflow-x:auto;padding-top:.6rem;width:100%}
+    .thumbs img{height:64px;object-fit:cover;border-radius:6px;cursor:pointer;border:2px solid transparent}
+    .thumbs img.active{border-color:var(--accent)}
+    @media (max-width:600px){header h1{font-size:1.2rem}.frame img{max-height:320px}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Phaser Projects — Screenshots</h1>
+  </header>
+
+  <main>
+    <div class="viewer" aria-live="polite">
+      <div class="frame">
+        <img id="current" src="images/phaser_1.png" alt="Phaser screenshot 1">
+      </div>
+
+      <div class="controls" role="toolbar" aria-label="Gallery controls">
+        <button id="prev" title="Previous (←)">Prev</button>
+        <div class="info" id="caption">1 / 5</div>
+        <button id="next" title="Next (→)">Next</button>
+        <a id="download" style="margin-left:8px;color:#000;text-decoration:none" download>Download</a>
+      </div>
+
+      <div class="dots" id="dots" aria-hidden="false"></div>
+
+      <div class="thumbs" id="thumbs" aria-label="Thumbnails"></div>
+    </div>
+  </main>
+
+  <script>
+    // List your landscape screenshots here (file names are case-sensitive on GitHub Pages)
+    const images = [
+      { src: 'images/ph1.png', alt: 'Phaser project screenshot 1' },
+      { src: 'images/ph2.png', alt: 'Phaser project screenshot 2' },
+      { src: 'images/ph3.png', alt: 'Phaser project screenshot 3' },
+      { src: 'images/ph4.png', alt: 'Phaser project screenshot 4' },
+      { src: 'images/ph5.png', alt: 'Phaser project screenshot 5' },
+      { src: 'images/ph6.png', alt: 'Phaser project screenshot 6' },
+      { src: 'images/ph7.png', alt: 'Phaser project screenshot 7' },
+      { src: 'images/ph8.png', alt: 'Phaser project screenshot 8' }
+    ];
+
+    let idx = 0;
+    const current = document.getElementById('current');
+    const caption = document.getElementById('caption');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+    const download = document.getElementById('download');
+    const dotsEl = document.getElementById('dots');
+    const thumbsEl = document.getElementById('thumbs');
+
+    function render() {
+      const it = images[idx];
+      current.src = it.src;
+      current.alt = it.alt;
+      caption.textContent = `${idx+1} / ${images.length}`;
+      download.href = it.src;
+      updateDots();
+      updateThumbs();
+    }
+
+    function updateDots(){
+      dotsEl.innerHTML = '';
+      images.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'dot' + (i===idx ? ' active' : '');
+        d.title = `Show ${i+1}`;
+        d.addEventListener('click', ()=>{ idx = i; render(); });
+        dotsEl.appendChild(d);
+      });
+    }
+
+    function updateThumbs(){
+      thumbsEl.innerHTML = '';
+      images.forEach((img,i)=>{
+        const t = document.createElement('img');
+        t.src = img.src;
+        t.alt = img.alt;
+        if(i===idx) t.classList.add('active');
+        t.addEventListener('click', ()=>{ idx = i; render(); });
+        thumbsEl.appendChild(t);
+      });
+    }
+
+    prev.addEventListener('click', ()=>{ idx = (idx-1+images.length) % images.length; render(); });
+    next.addEventListener('click', ()=>{ idx = (idx+1) % images.length; render(); });
+
+    // keyboard support
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'ArrowLeft') prev.click();
+      if(e.key === 'ArrowRight') next.click();
+    });
+
+    // initial render
+    render();
+  </script>
+</body>
+</html>
