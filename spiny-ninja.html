@@ -11,20 +11,22 @@
     h1 {font-family:'Press Start 2P', cursive; color:#ffcc00;}
     .gallery {display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; margin:2rem 0;}
     .gallery img {
-      width:90vw;
-      max-width:600px;
-      height:auto;
+      display:block;
+      width: 100%;           /* fill the gallery column */
+      max-width: 600px;      /* prevent it from growing too large */
+      height: auto;          /* keep original aspect ratio */
+      object-fit: contain;   /* show whole image (use 'cover' to fill/crop) */
       border-radius:16px;
       box-shadow:0 4px 16px rgba(0,0,0,0.5);
       transition:transform 0.2s;
+      margin: 0 auto;        /* center within the gallery column */
     }
-    .gallery img:hover {
-      transform:scale(1.04);
-    }
-    .back {color:#ffcc00; text-decoration:none; margin-bottom:2rem; display:inline-block;}
+
     @media (max-width: 700px) {
-      .gallery img {max-width:98vw;}
+      .gallery img { max-width: 98vw; }
     }
+
+    .back {color:#ffcc00; text-decoration:none; margin-bottom:2rem; display:inline-block;}
   </style>
 </head>
 <body>
