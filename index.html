@@ -15,7 +15,6 @@
     .projects {display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:2rem;}
     .card {background:#1f1f1f; border-radius:12px; overflow:hidden; box-shadow:0 6px 15px rgba(0,0,0,0.4); transition:transform 0.3s;}
     .card:hover {transform:translateY(-5px);}
-    .card img {width:100%; height:200px; object-fit:cover;}
     .card-content {padding:1.2rem;}
     .card h3 {margin:0; font-size:1.3rem; color:#ffcc00;}
     .card p {margin:0.8rem 0; font-size:0.95rem; color:#ccc;}
@@ -28,12 +27,14 @@
     .card a.img-link {display:block;}
     footer {background:#111; color:#777; text-align:center; padding:1.5rem; margin-top:3rem;}
     footer a {color:#ffcc00; text-decoration:none;}
+
+    /* keep a single, consistent thumbnail rule */
     .card img {
-    width: 100%;
-    height: 160px;           /* Adjust height for thumbnail */
-    object-fit: contain;     /* Show full image, no crop */
-    background: #222;        /* Optional: background for transparency */
-  }
+      width: 100%;
+      height: 160px;           /* thumbnail height */
+      object-fit: contain;     /* show full image without cropping */
+      background: #222;        /* optional for transparent images */
+    }
   </style>
 </head>
 <body>
@@ -75,30 +76,27 @@
         </div>
       </div>
 
-     <div class="card">
-        <a href="illam-escape-vr.html" class="img-link">
-          <img src="images/IllamEscapeIcon.png" alt="Illam Escape VR Screenshot">
-        </a>
-        <div class="card-content">
-          <h3>Illam Escape VR</h3>
-          <p>An escape game developed as a demo with virtual reality environment created on Google Cardboard technology.</p>
+        <div class="card">
+          <a href="illam-escape-vr.html" class="img-link">
+            <img src="images/IllamEscapeIcon.png" alt="Illam Escape VR Screenshot">
+          </a>
+          <div class="card-content">
+            <h3>Illam Escape VR</h3>
+            <p>An escape game developed as a demo with virtual reality environment created on Google Cardboard technology.</p>
           </div>
         </div>
 
         <div class="card">
-        <a href="highway-driver-3d.html" class="img-link">
-          <img src="images/HD3DIcon.png" alt="Highway Driver 3D Screenshot">
-        </a>
-        <div class="card-content">
-          <h3>Highway Driver 3D</h3>
-          <p>This is simple fun driving game with different vehicles. Game helps players to know Indian highways.</p>
+          <a href="highway-driver-3d.html" class="img-link">
+            <img src="images/HD3DIcon.png" alt="Highway Driver 3D Screenshot">
+          </a>
+          <div class="card-content">
+            <h3>Highway Driver 3D</h3>
+            <p>This is simple fun driving game with different vehicles. Game helps players to know Indian highways.</p>
           </div>
         </div>
-      </div>
 
-    </div>
-
-    </div>
+    </div> <!-- end .projects -->
   </section>
 
   <footer>
